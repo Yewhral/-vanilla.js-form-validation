@@ -1,14 +1,14 @@
 function validateNames(firstName, lastName) {       // checks if name fields are not empty and dont contain digits
-    const containsNumbers = function(nameToTest) {
-        return /[0-9]/.test(nameToTest);
+    const containsNumbers = (nameToTest) => {
+        return !!(/[0-9]/.test(nameToTest));
     };
 
-    if (containsNumbers(firstName) || containsNumbers(lastName)) {
-        createBubble('Your names cannot contain digits');
-        return false;
-    } else if (firstName.length === 0 || lastName.length === 0) {
+     if (firstName.length === 0 || lastName.length === 0) {
         createBubble ('Name fields cannot be left empty');
         return false;
+    } else if (containsNumbers(firstName) || containsNumbers(lastName)) {
+         createBubble('Your names cannot contain digits');
+         return false;
     }
     return true;
 }
@@ -37,10 +37,10 @@ function validateTextArea2(secondTextBox) {     // checks if second text field i
 
 // TODO implement RFC822 || RFC2822 if more accurate validation is needed
 function validateEmail(mail) {      // checks if mail has no whitespaces, isnt empty, checks if has asd@asd.xy format
-    const simpleMailCheck = function(mail) {
+    const simpleMailCheck = (mail) => {
         return !(/^.+@.+\..{2,6}$/).test(mail);
     };
-    const whitespaceCheck = function(mail) {
+    const whitespaceCheck = (mail) => {
       return (/\s/).test(mail);
     };
 
@@ -59,13 +59,13 @@ function validateEmail(mail) {      // checks if mail has no whitespaces, isnt e
 
 // alternative solution to consider: pattern with regexp
 function validatePass(password) {        // checks if password has at least one letter, digit and special sign and is at least 8 characters long
-    const hasAnyLetter = function(stringToTest) {
+    const hasAnyLetter = (stringToTest) => {
         return !(/[a-z]+/ig).test(stringToTest)
     };
-    const hasAnyNumber = function(stringToTest) {
+    const hasAnyNumber = (stringToTest) => {
         return !(/[\d]+/.test(stringToTest));
     };
-    const hasAnySpecial = function(stringToTest) {
+    const hasAnySpecial = (stringToTest) => {
         return !(/[!@#$%^&*()/\\}\[\].{,'";:|=+_\-?><~`]+/).test(stringToTest);
     };
 
@@ -86,7 +86,7 @@ function validatePass(password) {        // checks if password has at least one 
 }
 
 function validateVID(vidNumber) {       // checks if vid contains only between 1 and 5 digits and isn't empty
-    const checkVID = function(number) {
+    const checkVID = (number) => {
         return !(/^[\d]{1,5}$/.test(number));
     };
 
@@ -101,7 +101,7 @@ function validateVID(vidNumber) {       // checks if vid contains only between 1
 }
 
 function validateAmount(ticketsAmount) {        // checks if ticket amount field isn't empty, value is less than 20 and has only digits
-    const checkIfNumbers = function(number) {
+    const checkIfNumbers = (number) => {
         return !(/^[\d]{1,2}$/.test(number));
     };
 
@@ -146,9 +146,8 @@ function validateForm() {
     !validateVID(document.getElementsByName('vid_number')[0].value) ||
     !validateAmount(document.getElementsByName('tickets_count')[0].value) ) {
         return false;
-
-    } else {
-        saveToLocalStorage();
-        return true;
     }
+    saveToLocalStorage();
+    return true;
+
 }

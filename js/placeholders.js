@@ -10,12 +10,12 @@ function assignPlaceholders() {     // swaps html placeholders with custom ones
         tickets_count:'1'
     };
     for (let placeholderText in formList) {
+        if (!formList.hasOwnProperty(placeholderText)) continue;
         document.getElementsByName(placeholderText)[0].value="";
         document.getElementsByName(placeholderText)[0].placeholder=formList[placeholderText];
     }
 }
 
-window.onload = function() {
-    assignPlaceholders();
-};
+window.onload = assignPlaceholders;
+
 
