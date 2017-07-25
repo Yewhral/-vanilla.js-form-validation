@@ -1,6 +1,6 @@
 # -vanilla.js-form-validation
 
-Here's a live preview: https://yewhral.github.io/-vanilla.js-form-validation/
+Here's a live preview: https://yewhral.github.io/vanilla.js-form-validation/
 
 Here's a screenshot: http://i.imgur.com/QWvi4Aq.jpg
 
